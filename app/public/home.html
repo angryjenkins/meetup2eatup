@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Meetup 2 Eatup</title>
+	<!-- Latest compiled and minified CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<!-- custom stylesheet -->
+	<link rel="stylesheet" href="/css">
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Meetup 2 Eatup!</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" id="userName" placeholder="Username">
+						<input type="text" class="form-control" id="passWord" placeholder="Password">
+					</div>
+					<button type="submit" class="btn btn-default">Log In!</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					
+					<li><a href="/questions">Meet Eaters!</a></li>
+					<li><a href="/signup">Sign Up!</a></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</nav>
+	<div class="jumbotron">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h1>Meet Up 2 Eat Up!</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="col-md-12 text-center">
+			<p>You could eat ....</p>
+			<div class="test1">
+				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta quod ex quos omnis in, doloribus numquam corporis eaque incidunt rerum eveniet suscipit cumque adipisci fuga consequatur magni consequuntur, veniam ab itaque expedita error. Commodi culpa eligendi vel praesentium qui. Repellat labore eaque cupiditate, quibusdam voluptatem reiciendis totam tenetur doloribus voluptate.</div>
+				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias libero soluta, recusandae laudantium, voluptates nulla unde! Placeat officia libero nam debitis temporibus eaque. Ipsum eligendi deserunt qui fugit consequuntur quaerat sapiente, provident voluptate deleniti, nihil soluta incidunt labore odit minima voluptates recusandae, impedit magni error reiciendis in doloremque at fuga. Soluta molestias assumenda in iusto debitis pariatur modi mollitia ut, tempora quidem, accusantium vel earum qui quisquam, sequi animi omnis praesentium illo asperiores voluptas officiis.</div>
+				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim assumenda odio molestiae dicta tempora nesciunt dolorum officiis rerum eaque, placeat, temporibus! Ullam reiciendis deleniti ratione ea at, quas quia repellendus commodi, provident atque error, officia est omnis porro. Eaque architecto nesciunt autem cum veritatis nihil qui optio quisquam quos pariatur error, illo iure numquam vitae recusandae quas esse saepe fugiat minus provident maxime necessitatibus. Veritatis suscipit ad dolor ratione enim, voluptatum soluta consequatur nihil quaerat deleniti ullam dolore. Et ea facere aperiam libero beatae voluptas qui, id dignissimos impedit, quis, hic vitae, voluptatibus doloremque. Deleniti voluptatibus perferendis earum molestiae, ipsam.</div>
+				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias reprehenderit, ipsa tempore, possimus numquam ullam quae natus cumque, optio dolorem deserunt atque expedita dicta. Quas!</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		&copy; 2016 Mauricio, Matt and Steve.
+	</footer>
+
+
+
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+	      $('.test1').slick({
+			  dots: false,
+			  infinite: true,
+			  speed: 300,
+			  slidesToShow: 1,
+			  adaptiveHeight: true
+	      });
+	    });
+	</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Questionnaire</title>
+	<!-- Latest compiled and minified CSS & JS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css">
+
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Let's get you matched up!</a>
+			</div>
+	
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/">Home</a></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</nav>
+	<div class="container">
+		<div class="panel panel-clear">
+			<div class="panel-heading">
+				<form action="/api/matches" method="POST" role="form">
+					<legend>Meet Up and Eat Up!</legend>
+					
+					<div class="form-group col-md-6">
+						<label for="#loc">Meet Up ... Where?</label>
+						<input type="text" class="form-control" id="loc" placeholder="Where would you like to eat?">
+					</div>
+
+					<div class="form-group col-md-6">
+						<label for="">Eat Up, ... What?</label>
+						<input type="text" class="form-control" id="food" placeholder="What do you want to eat?">
+					</div>
+				
+					<button type="submit" id="matchMe" class="btn btn-primary">Find Fellow Eaters</button>
+				</form>
+			</div>
+		</div>
+		<footer>
+			&copy; 2016 Mauricio, Matt and Steve.
+		</footer>
+	</div>
+	<<script>
+		$(document).ready(function(){
+			$("#matchMe").click(function(){
+				var matchIt = {
+					newLocation: 	$("#loc").val().trim(),
+					newFood: 		$("#food").val().trim()
+				}
+
+				console.log(matchIt);
+
+				var currentURL = window.location.origin;
+
+				$.post(currentURL + '/api/matches', matchIt)
+					.done(function(data){
+						console.log(data);
+						alert('Updating preferences to ' + data.newFood + ' in ' + data.newLocation);
+
+				});
+
+				$("#loc").val('');
+				$("#food").val('');
+
+				return false;
+
+			});
+		})
+		
+	</script>
+	
+</body>
+</html>
