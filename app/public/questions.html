@@ -36,7 +36,7 @@
 	<div class="container">
 		<div class="panel panel-clear">
 			<div class="panel-heading">
-				<form action="/api/matches" method="POST" role="form">
+				<form action="/api/questions" method="POST" role="form">
 					<legend>Meet Up and Eat Up!</legend>
 					
 					<div class="form-group col-md-6">
@@ -53,6 +53,11 @@
 				</form>
 			</div>
 		</div>
+
+
+
+
+
 		<footer>
 			&copy; 2016 Mauricio, Matt and Steve.
 		</footer>
@@ -61,18 +66,18 @@
 		$(document).ready(function(){
 			$("#matchMe").click(function(){
 				var matchIt = {
-					newLocation: 	$("#loc").val().trim(),
-					newFood: 		$("#food").val().trim()
+					location: 	$("#loc").val().trim(),
+					food: 		$("#food").val().trim()
 				}
 
 				console.log(matchIt);
 
 				var currentURL = window.location.origin;
 
-				$.post(currentURL + '/api/matches', matchIt)
+				$.post(currentURL + '/api/questions', matchIt)
 					.done(function(data){
 						console.log(data);
-						alert('Updating preferences to ' + data.newFood + ' in ' + data.newLocation);
+						alert('Updating preferences to ' + data.food + ' in ' + data.location);
 
 				});
 

@@ -82,6 +82,7 @@ module.exports = function(app){
 		var person = req.body;
 
 		Person.create({
+			firstName: 	person.firstName,
 			lastName: 	person.lastName,
 			age: 		person.age,
 			email: 		person.email,	
@@ -95,34 +96,18 @@ module.exports = function(app){
 		});
 	})
 
-	app.post('/api/matches', function(req, res){
+	app.post('/api/questions', function(req, res){
 
 		// Take the request...
 		var person = req.body;
 
 		Person.update({
-			lastName: 	person.lastName,
-			age: 		person.age,
-			email: 		person.email,	
-			userName: 	person.userName,
-			passWord: 	person.passWord,
-			food: 		person.food,
-			location: 	person.location,
-			photo: 		person.photo,
-			gender: 	person.gender,
-			genderPref: person.genderPref
+		  food: person.food,
+		  location: person.location
+		}, {
+		  where: {
+		    id: 1
+		  }
 		});
-
-		// Post.update({
-		//   updatedAt: null,
-		// }, {
-		//   where: {
-		//     deletedAt: {
-		//       $ne: null
-		//     }
-		//   }
-		// });
-		
-		// UPDATE post SET updatedAt = null WHERE deletedAt NOT NULL;
 	})
 }
