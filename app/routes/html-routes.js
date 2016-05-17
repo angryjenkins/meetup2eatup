@@ -41,6 +41,10 @@ module.exports = function(app){
 	app.get('/css', function(req, res){
 		res.sendFile(path.join(__dirname + '/../public/css/styles.css'));
 	});
+
+	app.get('/prefLog', function(req, res){
+		res.sendFile(path.join(__dirname + '/../public/txt/matchLog.txt'));
+	});
 	
 	
 	

@@ -5,6 +5,7 @@
 // Dependencies
 // =============================================================
 var Person 	= require("../model/info.js"); // Pulls out the Character Model
+var fs 		= require('fs');
 
 // Routes
 // =============================================================
@@ -96,6 +97,15 @@ module.exports = function(app){
 		});
 	})
 
+	app.post('/questions', function(req, res){
+
+		// Take the request...
+		var person = req.body;
+
+		console.log('push this to the server!');
+		console.log(person);
+	})
+
 	app.post('/api/questions', function(req, res){
 
 		// Take the request...
@@ -106,7 +116,7 @@ module.exports = function(app){
 		  location: person.location
 		}, {
 		  where: {
-		    id: 1
+		    id: 1 //this should be member id
 		  }
 		});
 	})
