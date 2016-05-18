@@ -13,44 +13,6 @@ var merge 	= require('merge');
 // =============================================================
 module.exports = function(app){
 
-	// Search for Specific Character (or all characters) then provides JSON
-// 	app.get('api/submit', function(req, res){
-
-// 		// If the user provides a specific character in the URL...
-// 		if(req.params.characters){
-
-// 			// Then display the JSON for ONLY that character.
-// 			// (Note how we're using the ORM here to run our searches)
-
-// 			//go through character name and find req.params.character then bring the json object
-// 			Character.findAll({
-// 				where: {
-// 					routeName: req.params.characters
-// 				}
-// 			}).then(function(result){
-// 				res.json(result);
-// 			})
-// 		}
-
-// 		// Otherwise...
-// 		else{
-// 			// Otherwise display the data for all of the characters. 
-// 			// (Note how we're using Sequelize here to run our searches)
-// 				Character.findAll({})
-// 					.then(function(result){
-// 						res.json(result);
-// 				})
-// 			};
-
-// 	});
-
-// //login aurthentication
-// app.post('api/login', 
-//   passport.authenticate('local', { failureRedirect: '/login' }),
-//   function(req, res) {
-//     res.redirect('/');
-//   });
-
 	app.get('/api/:id?', function(req, res){
 		// If the user provides a specific character in the URL...
 		if(req.params.id){
@@ -78,29 +40,29 @@ module.exports = function(app){
 
 	});
 
-	app.get('/matches', function(req,res){
+	app.post('/api/matches', function(req,res){
 		var options = {
-	  consumer_key: 'blnUGOa1xqRIq5Kvk2NIiw',
-	  consumer_secret: 'k-VIMJNVzfFn8yA0olc9P2Rk7Os',
-	  token: 'mntH_9Niv9kfvf03XW-mPDQUm2wkqiTx',
-	  token_secret: 'g-EzbDLsWt8bEAcTxhYFBQNqXuQ',
-	};
+		  consumer_key: 'blnUGOa1xqRIq5Kvk2NIiw',
+		  consumer_secret: 'k-VIMJNVzfFn8yA0olc9P2Rk7Os',
+		  token: 'mntH_9Niv9kfvf03XW-mPDQUm2wkqiTx',
+		  token_secret: 'g-EzbDLsWt8bEAcTxhYFBQNqXuQ',
+		};
 
-	fs.readFile('./app/logs/prefLog.txt', (err, data) => {
-		if (err) throw err;
+		fs.readFile('./app/logs/prefLog.txt', (err, data) => {
+			if (err) throw err;
 
-		var parameters = JSON.parse(data);
+			var parameters = JSON.parse(data);
 
-		console.log('read from the text file, ...')
-	  	console.log(parameters);
+			console.log('read from the text file, ...')
+		  	console.log(parameters);
 
-		yelp.search(merge(options, parameters), (data) => {
-		  console.log(data);
-		}, (err) => {
-		  console.error(err);
+			yelp.search(merge(options, parameters), (data) => {
+			  console.log(data);
+			}, (err) => {
+			  console.error(err);
+			});
+
 		});
-
-	});
 	})
 
 	app.post('/api/signup', function(req, res){
@@ -138,16 +100,16 @@ module.exports = function(app){
 		var person = req.body;
 
 		var personString = JSON.stringify(person);
+		if(person.food != "" && person.location != ""){
 
-		//write preference to a txt file.
-		fs.writeFile('./app/logs/prefLog.txt', personString, (err) => {
-		  if (err) throw err;
+			//write preference to a txt file.
+			fs.writeFile('./app/logs/prefLog.txt', personString, (err) => {
+			  if (err) throw err;
 
-		});
+			});
 
 
 		// update the database wih new preferences.
-		if(person.food != "" && person.location != ""){
 			Person.update({
 			  food: person.food,
 			  location: person.location

@@ -34,6 +34,31 @@
 		</footer>	
 	</div>
 	<!-- add ajax call for matches, ...  -->
+	<script type="text/javascript">
+
+		var currentURL = window.location.origin;
+		
+		$.post( currentURL + '/api/matches', matchIt)
+			.done(function(data){
+				var matchIt = {
+					food: matchData.food,
+					location: matchData.location
+				}
+
+				matchData.push(matchIt);
+
+			});
+
+			
+			$("#food").val('');
+			$("#location").val('');
+			
+			return false;
+
+			});
+		});
+	</script>
+	
 </body>
 </html>
 
