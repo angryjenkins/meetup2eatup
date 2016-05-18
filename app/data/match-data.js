@@ -1,3 +1,3 @@
-var matchData 	= [];
+var matchData = [];
 
-module.exports	= matchData;
+module.exports = matchData;

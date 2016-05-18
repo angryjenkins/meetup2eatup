@@ -28,9 +28,9 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
 
-
-require('./app/routes/api-routes.js')(app)
-require('./app/routes/html-routes.js')(app)
+require('./yelp.js')(app);
+require('./app/routes/api-routes.js')(app);
+require('./app/routes/html-routes.js')(app);
 
 
 app.listen(PORT, function() {

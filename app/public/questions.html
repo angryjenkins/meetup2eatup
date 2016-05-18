@@ -3,13 +3,20 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Questionnaire</title>
+	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+
 	<!-- Latest compiled and minified CSS & JS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" href="/css">
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!--yelp script file -->
+	
+
 </head>
+
 <body>
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="container-fluid">
@@ -36,7 +43,7 @@
 	<div class="container">
 		<div class="panel panel-clear">
 			<div class="panel-heading">
-				<form action="/api/matches" method="POST" role="form">
+				<form action="/api/questions" method="POST" role="form">
 					<legend>Meet Up and Eat Up!</legend>
 					
 					<div class="form-group col-md-6">
@@ -51,7 +58,10 @@
 				
 					<button type="submit" id="matchMe" class="btn btn-primary">Find Fellow Eaters</button>
 				</form>
+
 			</div>
+			<p> here</p>
+			 <div id="map" style="height: 400px; width: 500px;">
 		</div>
 
 
@@ -62,7 +72,7 @@
 			&copy; 2016 Mauricio, Matt and Steve.
 		</footer>
 	</div>
-	<<script>
+	<script>
 		$(document).ready(function(){
 			$("#matchMe").click(function(){
 				var matchIt = {
@@ -87,7 +97,51 @@
 				return false;
 
 			});
+
+			
+    var locations = [
+      ['Bondi Beach', -10.890542, 151.274856, 4],
+      ['Coogee Beach', -33.923036, 151.259052, 5],
+      ['Cronulla Beach', -34.028249, 151.157507, 3],
+      ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+      ['Maroubra Beach', -33.950198, 151.259302, 1]
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(-33.92, 151.25),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) { 
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+
+
 		})
+
+//ajax getrequest for yelp info????
+//GOAL: get yelp info into html file
+$.getScript("/Users/miller/Desktop/matt/meetup2eatup/Meat-Up-To-Eat-Up/meetup2eatup/yelp.js", function(){
+
+   alert("Script loaded but not necessarily executed.");
+
+console.log(data.businesses[0].name)
+}); console.log(data.businesses[0].name)
 		
 	</script>
 	
