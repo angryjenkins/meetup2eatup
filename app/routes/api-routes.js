@@ -4,8 +4,10 @@
 
 // Dependencies
 // =============================================================
-var Person 	= require("../model/info.js"); // Pulls out the Character Model
+var Person 	= require("../model/info"); // Pulls out the Character Model
 var fs 		= require('fs');
+var yelp 	= require('node-yelp-api');
+var merge 	= require('merge');
 
 // Routes
 // =============================================================
@@ -76,6 +78,30 @@ module.exports = function(app){
 
 	});
 
+	app.get('/matches', function(req,res){
+		var options = {
+	  consumer_key: 'blnUGOa1xqRIq5Kvk2NIiw',
+	  consumer_secret: 'k-VIMJNVzfFn8yA0olc9P2Rk7Os',
+	  token: 'mntH_9Niv9kfvf03XW-mPDQUm2wkqiTx',
+	  token_secret: 'g-EzbDLsWt8bEAcTxhYFBQNqXuQ',
+	};
+
+	fs.readFile('./app/logs/prefLog.txt', (err, data) => {
+		if (err) throw err;
+
+		var parameters = JSON.parse(data);
+
+		console.log('read from the text file, ...')
+	  	console.log(parameters);
+
+		yelp.search(merge(options, parameters), (data) => {
+		  console.log(data);
+		}, (err) => {
+		  console.error(err);
+		});
+
+	});
+	})
 
 	app.post('/api/signup', function(req, res){
 
@@ -111,13 +137,26 @@ module.exports = function(app){
 		// Take the request...
 		var person = req.body;
 
-		Person.update({
-		  food: person.food,
-		  location: person.location
-		}, {
-		  where: {
-		    id: 1 //this should be member id
-		  }
+		var personString = JSON.stringify(person);
+
+		//write preference to a txt file.
+		fs.writeFile('./app/logs/prefLog.txt', personString, (err) => {
+		  if (err) throw err;
+
 		});
+
+
+		// update the database wih new preferences.
+		if(person.food != "" && person.location != ""){
+			Person.update({
+			  food: person.food,
+			  location: person.location
+			}, {
+			  where: {
+			    id: 1 //this should be member id
+			  }
+			});	
+		}
+		
 	})
 }
